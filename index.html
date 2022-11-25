@@ -1,0 +1,680 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<title>Untitled</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<style type="text/css">
+		@charset "UTF-8";
+
+		@font-face {
+			font-family: "TT-Bold";
+			font-style: normal;
+			font-weight: 700;
+			src: local("TT-Bold"),
+				url("https://prekol.ru/black/fonts/TT-Norms-Pro-Bold.woff2") format("woff2"),
+				url("https://prekol.ru/black/fonts/TTNormsPro-Bold.woff") format("woff");
+		}
+
+		@font-face {
+			font-family: 'TT-Normal';
+			src: url('https://prekol.ru/black/fonts/TTNormsPro-Normal.eot');
+			src: url('https://prekol.ru/black/fonts/TTNormsPro-Normal.eot?#iefix') format('embedded-opentype'),
+				url('https://prekol.ru/black/fonts/TTNormsPro-Normal.woff2') format('woff2'),
+				url('https://prekol.ru/black/fonts/TTNormsPro-Normal.woff') format('woff'),
+				url('https://prekol.ru/black/fonts/TTNormsPro-Normal.ttf') format('truetype'),
+				url('https://prekol.ru/black/fonts/TTNormsPro-Normal.svg') format('svg');
+			font-weight: 500;
+			font-style: normal;
+			font-display: swap;
+		}
+
+		body {
+			font-family: 'TT-Normal';
+		}
+
+		.modal__content h1 {
+			font-weight: 700;
+			font-size: 60px;
+			line-height: 72px;
+			font-family: 'TT-Bold';
+		}
+
+		.modal__content h2 {
+			font-weight: 700;
+			font-size: 40px;
+			line-height: 48px;
+			display: flex;
+			align-items: center;
+			text-align: center;
+
+			color: #ffffff;
+		}
+
+		.modal__content h3 {
+			font-weight: 450;
+			font-size: 30px;
+			line-height: 38px;
+		}
+
+		.modal__content p {
+			font-weight: 450;
+			font-size: 20px;
+			line-height: 26px;
+			text-align: center;
+		}
+
+		h1,
+		h2,
+		h3,
+		p {
+			margin: 0;
+			padding: 0;
+		}
+
+		h3>a,
+		h3>a:active,
+		h3>a:hover {
+			color: inherit !important;
+			text-decoration: none
+		}
+
+		button {
+			cursor: pointer;
+		}
+
+		.dart {
+			width: 55px;
+			height: 181px;
+			position: absolute;
+		}
+
+		.dart__circle {
+			background-color: #d9d9d9;
+			width: 244px;
+			height: 244px;
+			border-radius: 50%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			position: absolute;
+			bottom: -122px;
+			left: 50%;
+			transform: translate(-50%);
+		}
+
+		.dart__container {
+			width: 100%;
+			height: 100%;
+			display: flex;
+			text-align: center;
+			position: relative;
+			cursor: url('https://prekol.ru/black/aim2.cur') 30 30, move;
+			align-items: center;
+			justify-content: center;
+
+			background-image: url('https://prekol.ru/black/bg.jpg') !important;
+			border-radius: 30px;
+		}
+
+		.shelf__container {
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			width: 100%;
+			height: 222px;
+			max-width: 718px;
+		}
+
+		.shelf__container-flex {
+			display: flex;
+		}
+
+		.shelf__container-flex-end {
+			justify-content: flex-end;
+		}
+
+		.shelf__container-flex-start {
+			justify-content: flex-start;
+		}
+
+		.shelf__container img {
+			max-width: 621px;
+		}
+
+		.box__container {
+			position: absolute;
+			left: 50%;
+			top: 84px;
+			transform: translate(-50%);
+			display: grid;
+			grid-template-areas:
+				"box4 box4 box5 box5 box6 box6 . ."
+				". box1 box1 box2 box2 box3 box3 .";
+			gap: 57px 25px;
+		}
+
+		.box1 {
+			grid-area: box1;
+		}
+
+		.box2 {
+			grid-area: box2;
+		}
+
+		.box3 {
+			grid-area: box3;
+		}
+
+		.box4 {
+			grid-area: box4;
+		}
+
+		.box5 {
+			grid-area: box5;
+		}
+
+		.box6 {
+			grid-area: box6;
+		}
+
+		.box {
+			width: 144px;
+			height: 112px;
+			display: block;
+		}
+
+		.modal-dialog {
+			max-width: 1160px;
+
+			margin: 0 auto;
+		}
+
+		.modal-body {
+			height: 100%;
+			padding: 0;
+		}
+
+		.modal-content {
+			height: 550px;
+			background: white;
+			margin: 0 15px;
+
+			border-radius: 30px;
+			border: none;
+		}
+
+		.modal-close {
+			position: absolute;
+			right: 30px;
+			top: 30px;
+			text-align: center;
+			font-size: 40px;
+			line-height: 40px;
+			font-weight: 100;
+			width: 30px;
+			height: 30px;
+			padding: 0;
+			border: 0;
+			cursor: pointer;
+			background: none;
+		}
+
+		button:focus {
+			outline: 0;
+		}
+
+		.underline {
+			text-decoration: underline;
+			cursor: pointer;
+		}
+
+		.modal__content {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: space-evenly;
+			text-align: center;
+		}
+
+		.text-framer {
+			max-width: 696px;
+		}
+
+		.pink-button {
+			background: #ff006b;
+			border-radius: 30px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			padding: 11px 72px;
+			border: none;
+		}
+
+		.pink-button-small {
+			padding: 8px 50px;
+			color: white;
+		}
+
+		#pink-button-hide{
+			display: none;
+		}
+
+		.pink-button-small h3 {
+			font-weight: bold;
+		}
+
+		.modal__win-img {
+			height: 200px;
+		}
+
+		.modal__win-name {
+			min-width: 140px;
+			text-align: left;
+		}
+
+		.modal__content {
+			margin: 20px;
+		}
+
+		@media (max-width: 644px) {
+			.box {
+				width: 120px;
+				height: 110px;
+			}
+
+			.box__container {
+				grid-template-areas:
+					"box4 box4 box5 box5 box6 box6"
+					"box1 box1 box2 box2 box3 box3";
+			}
+
+			.modal__content h1 {
+				font-size: 30px;
+				line-height: 35.94px;
+			}
+
+			.modal__content h3 {
+				font-size: 6vw;
+				line-height: 6vw;
+			}
+
+			.pink-button h2 {
+				font-size: 30px;
+			}
+
+			p.text-framer {
+				font-size: 14px;
+			}
+
+			.pink-button {
+				padding: 3px 84px;
+			}
+
+			.pink-button-small {
+				padding: 8px 10px;
+			}
+
+			.modal__win-img {
+				width: 194px;
+				height: 180px;
+			}
+
+			.modal-close {
+				top: 5px;
+				right: 10px;
+			}
+
+			.modal__content-win {
+				/* max-width: 282px; */
+			}
+
+			.pink-button-loss {
+				padding: 3px 30px;
+			}
+		}
+
+		@media (max-width: 480px) {
+			.shelf__container {
+				max-width: 328px;
+				height: 245px;
+			}
+
+			.shelf {
+				width: 282px;
+			}
+
+			.box {
+				width: 92px;
+				height: 72px;
+			}
+
+			.box__container {
+				top: 95px;
+				gap: 38px 25px;
+				grid-template-areas:
+					"box1 box1 box2 box2 . ."
+					". box3 box3 box4 box4 ."
+					"box5 box5 box6 box6 . .";
+				padding-left: 20px;
+			}
+
+			.dart__circle {
+				width: 124px;
+				height: 124px;
+				bottom: -61px;
+			}
+
+			.dart {
+				width: 24px;
+				height: 92px;
+			}
+
+			.mobile-view {
+				display: flex;
+			}
+
+			.pc-view {
+				display: none;
+			}
+		}
+
+		@media (min-width: 481px) {
+			.mobile-view {
+				display: none;
+			}
+
+			.pc-view {
+				display: block;
+			}
+		}
+	</style>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+		</script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+		</script>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+		crossorigin="anonymous"></script>
+	<script>
+		const dots = ['\u00A0\u00A0\u00A0', '.\u00A0\u00A0', '..\u00A0', '...']
+		let load = 'Открываем бокс';
+		let j = 0; 
+
+		let myInterval = setInterval(function () {
+			$('.modal__win-name').html(load + dots[j]);
+			j == dots.length - 1? j = 0 : j++;
+		}, 500)
+
+		async function doRequest(query) {
+			let url = "https://prekol.ru/narg/test_api.php?sn=" + query;
+
+			var payload = {
+				'sn': query,
+				'act': 'get_present_info'
+			};
+
+			let response = await fetch(url, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(payload)
+			})
+				.then(function (res) {
+					return res.json();
+				})
+				.catch(function (e) {
+					console.log(e);
+				})
+				.then(function (data) {
+					clearInterval(myInterval);
+					$('.modal__win-name').css({ 'text-align': 'center' })
+					$('.modal__win-img').attr("src", data.present_image);
+					$('.modal__win-name').text(data.local_present_name)
+				})
+				.catch(function (e) {
+					console.log(e);
+					$('.modal__win-name').css({ 'text-align': 'center' })
+				})
+				.then(() => {
+					if ($('.modal__win-img').attr("src") !== 'https://prekol.ru/black/bglaptop.jpg') {
+						let button = $('#pink-button-hide').slideDown();
+					}
+				})
+		}
+		$(function () {
+			var query;
+			// $('.t-form__inputsbox > .t-form__submit > .t-submit').click(() => {
+			// 	query = $('div[data-input-lid="1666006760771"] > .t-input-block > input').val()
+			// })
+			// var observer = new MutationObserver(function (mutations) {
+			// 	mutations.forEach(function (mutationRecord) {
+			// 		t702_closePopup(502404168)
+			// 		$('#timeModal').modal('toggle');
+			// 	});
+			// });
+			// var target = document.querySelector('.js-successbox.t-form__successbox.t-text.t-text_md')
+			// observer.observe(target, { attributes: true, attributeFilter: ['style'] });
+
+			var imgpos = { top: 0 };
+			var img, pos, x, y, x1, y1, r;
+			var y0, x0 = $("body").width() / 2;
+			var dart = $('.dart__circle');
+
+			function stopEvents() {
+				$(".dart__container").off("click");
+				$(".dart__container").off("mousemove");
+				$(".dart__container").off("click");
+			}
+
+			function startEvents() {
+				startEventMove()
+				startEventClick()
+				boxEventHandler()
+			}
+			function startEventMove() {
+				$(".dart__container").mousemove(function (e) {
+					x1 = e.pageX;
+					y1 = e.pageY;
+					x = x1 - x0;
+					y = y1 - y0;
+					r = 180 + 90 - 180 / Math.PI * Math.atan2(y, x);
+					img.css("transform", "rotate(-" + r + "deg)");
+					img.css("-moz-transform", "rotate(-" + r + "deg)");
+					img.css("-webkit-transform", "rotate(-" + r + "deg)");
+					img.css("-o-transform", "rotate(-" + r + "deg)");
+				})
+			}
+			function startEventClick() {
+				$(".dart__container").click(function (e) {
+					stopEvents();
+					img.animate({ top: e.pageY - imgpos.top - 30, left: e.pageX - imgpos.left - 9, width: '18px', height: '60px' }, 200)
+					img.fadeOut(1000)
+					img.hide(1000, img.animate({ top: y0 - imgpos.top - img.height() / 2, left: x0 - imgpos.left - img.width() / 2 }, 100))
+					img.animate({ width: 'inherit', height: 'inherit' }, 100)
+					img.fadeIn(1000);
+				});
+			}
+
+			$('#gameModal').on('shown.bs.modal', function (e) {
+				imgpos = $(".dart__circle").offset();
+				y0 = imgpos.top + $(".dart__circle").height() / 2;
+				img = $(".dart");
+				pos = img.position();
+				$('body').addClass('modal-open');
+				startEvents()
+			})
+
+			$('#winModal').on('show.bs.modal', function () {
+				try {
+					doRequest(query);
+				} catch (error) {
+					console.log(error)
+				}
+			})
+
+			$('#awardModal').on('show.bs.modal', function () {
+				doRequest(query);
+			})
+
+			$('#gameModal').on('hide.bs.modal', function (e) {
+				stopEvents();
+			})
+
+			function boxEventHandler() {
+				$('.dart__container').click((e) => {
+					if (e.target.classList.contains("box")) {
+						setTimeout(() => $('#gameModal').modal('toggle').promise().done(function () {
+							$('#winModal').modal('toggle')
+						}), 1000)
+					} else {
+						setTimeout(() => $('#gameModal').modal('toggle').promise().done(function () {
+							$('#lossModal').modal('toggle')
+						}), 1000)
+					}
+				})
+			}
+
+			$('#lossModalPlay').click(() => {
+				$('#lossModal').modal('toggle')
+				$('#gameModal').modal('toggle')
+			})
+
+			$('#timeModalPlay').click(() => {
+				$('#timeModal').modal('toggle')
+				$('#gameModal').modal('toggle')
+			})
+		});
+	</script>
+</head>
+
+<body>
+	<button onclick="$('#timeModal').modal('toggle')">Start!</button>
+	<br>
+	<div style="padding: 1000px 0 1000px 0">
+		<a name="moreprizes">#moreprizes</a>
+		<br>
+		<button onclick="$('#awardModal').modal('toggle')">Award!</button>
+	</div>
+	<div class="modal fade" id="gameModal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="dart__container">
+						<div class="shelf__container">
+							<div class="shelf__container-flex shelf__container-flex-start">
+								<img class="shelf" src="https://prekol.ru/black/shelf.svg" alt="">
+							</div>
+							<div class="shelf__container-flex shelf__container-flex-end">
+								<img class="shelf" src="https://prekol.ru/black/shelf.svg" alt="">
+							</div>
+							<div class="shelf__container-flex shelf__container-flex-start mobile-view ">
+								<img class="shelf" src="https://prekol.ru/black/shelf.svg" alt="">
+							</div>
+						</div>
+						<div class="box__container">
+							<img class="box box1" src="https://prekol.ru/black/box.png" alt="">
+							<img class="box box2" src="https://prekol.ru/black/box.png" alt="">
+							<img class="box box3" src="https://prekol.ru/black/box.png" alt="">
+							<img class="box box4" src="https://prekol.ru/black/box.png" alt="">
+							<img class="box box5" src="https://prekol.ru/black/box.png" alt="">
+							<img class="box box6" src="https://prekol.ru/black/box.png" alt="">
+						</div>
+						<div class="dart__circle">
+							<img id='dart' class='dart' src="https://prekol.ru/black/dart.svg" alt="">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="lossModal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-body modal__content">
+					<h1>Эх... мимо!</h1>
+					<h3 class="text-framer">
+						Но ничего страшного &ndash; кидайте еще раз ;)
+					</h3>
+					<button class="pink-button pink-button-loss" id="lossModalPlay">
+						<h2>Кинуть еще раз</h2>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="timeModal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-body modal__content">
+					<h1>Заявка отправлена. <br> Пришло время кидать дротик!</h1>
+					<h3 class="text-framer">
+						Задача: попасть в один из шести боксов с призом.
+					</h3>
+					<h3 class="text-framer">
+						<span class="pc-view">Для этого наведите прицел на&nbsp;один из&nbsp;деверянных боксов
+							и&nbsp;нажмите
+							на&nbsp;него.</span> <span class="mobile-view">На&nbsp;смартфоне необходимо
+							нажать
+							на&nbsp;деревянный бокс для&nbsp;выстрела.</span>
+					</h3>
+					<button class="pink-button" id="timeModalPlay">
+						<h2>Играть!</h2>
+					</button>
+				</div>
+				</button>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="winModal" tabindex="-1" role="dialog">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-body modal__content">
+					<h1 class="modal__content-win">Ура! Вы попали в&nbsp;цель!</h1>
+					<img src=" https://prekol.ru/black/loading.gif" class="modal__win-img">
+					<h3 class="text-framer modal__win-name">
+						Название приза
+					</h3>
+					<p class="text-framer">Ваша заявка на&nbsp;модерации. В&nbsp;течение 7&nbsp;рабочих дней мы свяжемся
+						с&nbsp;вами. Если у&nbsp;вас остались вопросы:
+						<span class="underline" onclick="alert('вопросы')">info@rog.events</span>
+					</p>
+					<button class="pink-button pink-button-small" onclick="$('#winModal').modal('toggle')"
+						id="pink-button-hide">
+						<h3><a href="#moreprizes">Получить еще больше призов!</a></h3>
+					</button>
+				</div>
+				<button type="button" class="modal-close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="awardModal" tabindex="-1" role="dialog">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-body modal__content">
+					<h1>Вы уже играли. Ваш приз:</h1>
+					<img src=" https://prekol.ru/black/loading.gif" class="modal__win-img">
+					<h3 class="text-framer modal__win-name">Название приза</h3>
+					<p class="text-framer">Ваша заявка на&nbsp;модерации. Если у&nbsp;вас остались вопросы:
+						<span class="underline" onclick="alert('вопросы')">info@rog.events</span>,
+					</p>
+				</div>
+				<button type="button" class="modal-close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
